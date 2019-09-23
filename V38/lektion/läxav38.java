@@ -2,7 +2,7 @@ package lektion;
 
 import java.util.Scanner;
 
-public class läxav37 {
+public class läxav38 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
