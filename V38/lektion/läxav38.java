@@ -14,7 +14,8 @@ public class läxav38 {
 		int tal4 = 0;
 		int tal5 = 0;
 		double dela = 5;
-
+//hej
+		
 		System.out.println("Skriv 5 heltal:");
 		tal1 = input.nextInt();
 		tal2 = input.nextInt();
