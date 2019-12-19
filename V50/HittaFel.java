@@ -9,6 +9,7 @@ public class HittaFel {
 		boolean Success = false;
 
 		System.out.println("Write a integer: ");
+		
 
 		while (!Success) {
 
@@ -20,6 +21,7 @@ public class HittaFel {
 			} catch (Exception e) {
 				input.next();
 				System.out.println("You typed the wrong input");
+				System.out.println(e);
 			}
 		}
 	}
