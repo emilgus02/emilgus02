@@ -39,65 +39,80 @@ public class talspel {
 		if (choice.equals("1")) { // Kollar om man har skrivit 1
 			int antal = 15;// väljer hur många antal gissningar man har
 			int max = 100;
-			guess(igen, antal, max); // Kallar metoden guess
+			guess(antal, max); // Kallar metoden guess
 		} else if (choice.equals("2")) {
 			int antal = 10;
 			int max = 100;
-			guess(igen, antal, max);
+			guess(antal, max);
 		} else if (choice.equals("3")) {
 			int antal = 5;
 			int max = 100;
-			guess(igen, antal, max);
+			guess(antal, max);
 		} else if (choice.equals("4")) {
 			int max = 0;
 			int antal = 0;
-			String max1;
-			boolean diff0 = false;
-			boolean diff = false;
-			boolean diff2 = false;
-			boolean diff3 = false;
-			do { // loopar om man skriver in 0
-				diff0 = false;
-				System.out.println("Hur många gissningar vill du ha? (Skriv gärna ett tal mellan 1 och 999999999)");
-				do { // om man skriver en bokstav
-					diff = false;
-					max1 = input.nextLine();
-					if (nummer2(max1) == true) { // Kollar om det är ett heltal
-						antal = Integer.parseInt(max1); // Gör om talet till en Int
+			diff4(max, antal);
 
-					} else {
-						System.out.println("Skriv gärna ett heltal mellan 1 och 999999999");
-						diff = true;
-					}
-				} while (diff == true);
-				System.out.println(
-						"Vad ska största talet i intervallet vara? (Skriv gärna ett tal mellan 1 och 999999999)");
-				do { // Om man skriver en bokstav
-					diff2 = false;
-					max1 = input.nextLine();
-					if (nummer2(max1) == true) {
-						max = Integer.parseInt(max1); // Gör om max1 till int max
-					} else {
-						System.out.println("Skriv gärna ett heltal mellan 1 och 999999999");
-						diff2 = true;
-					}
-				} while (diff2 == true);
-				if (max > 0 && antal > 0) { // Kollar så talet inte är under 1
-					System.out.println();
-					guess(igen, antal, max);
-				} else if (max == 0) {
-					System.out.println("Du kan inte ha 0 som max i intervallet");
-					diff0 = true;
-				} else {
-					System.out.println("Du kan inte ha 0 gissningar");
-					diff0 = true;
-				}
-			} while (diff0 == true);
 		} else if (choice.equals("5")) {
 			System.exit(0); // Stänger av programmet
 		} else { // Om man inte skrivit ett tal mellan 1-5
 			System.out.println("Snälla skriv ett tal mellan 1 och 4 tack");
 		}
+
+	}
+	
+	/**
+	 * Väljer antalet och intervallerna i svårighetsgrad 4
+	 * @param max
+	 * @param antal
+	 */
+	private static void diff4(int max, int antal) {
+		Scanner input = new Scanner(System.in);
+		String max1;
+		boolean diff0 = false;
+		boolean diff = false;
+		boolean diff2 = false;
+		do { // loopar om man skriver in 0
+			diff0 = false;
+			System.out.println("Hur många gissningar vill du ha? (Skriv gärna ett tal mellan 1 och 999999999)");
+			do { // om man skriver en bokstav
+				diff = false;
+				max1 = input.nextLine();
+				if (nummer2(max1) == true) { // Kollar om det är ett heltal
+					antal = Integer.parseInt(max1); // Gör om talet till en Int
+
+				} else {
+					System.out.println();
+					System.out.println("Skriv gärna ett heltal mellan 1 och 999999999");
+					System.out.println("Hur många gissningar vill du ha?");
+					diff = true;
+				}
+			} while (diff == true);
+			System.out
+					.println("Vad ska största talet i intervallet vara? (Skriv gärna ett tal mellan 1 och 999999999)");
+			do { // Om man skriver en bokstav
+				diff2 = false;
+				max1 = input.nextLine();
+				if (nummer2(max1) == true) {
+					max = Integer.parseInt(max1); // Gör om max1 till int max
+				} else {
+					System.out.println();
+					System.out.println("Skriv gärna ett heltal mellan 1 och 999999999");
+					System.out.println("Hur många gissningar vill du ha?");
+					diff2 = true;
+				}
+			} while (diff2 == true);
+			if (max > 0 && antal > 0) { // Kollar så talet inte är under 1
+				System.out.println();
+				guess(antal, max);
+			} else if (max == 0) {
+				System.out.println("Du kan inte ha 0 som max i intervallet");
+				diff0 = true;
+			} else {
+				System.out.println("Du kan inte ha 0 gissningar");
+				diff0 = true;
+			}
+		} while (diff0 == true);
 
 	}
 
@@ -133,7 +148,7 @@ public class talspel {
 	 * @param antal
 	 * @return
 	 */
-	private static void guess(boolean igen, int antal, int max) {
+	private static void guess(int antal, int max) {
 		System.out.println("Du har nu valt en svårighetsgrad");
 		System.out.println("Gissa nu ett tal mellan " + 1 + "-" + max);
 		Scanner input = new Scanner(System.in);
@@ -143,7 +158,7 @@ public class talspel {
 			int k = antal - i; // är för att visa hur många chanser man har kvar
 			if (i == antal) { // Här hamnar man om man inte har några gissningar kvar
 				System.out.println("Du har inga gissningar kvar, talet var " + slump);
-				igen1(igen); // man hamnar i metoden igen1 för att kolla om man vill köra igen
+				igen1(); // man hamnar i metoden igen1 för att kolla om man vill köra igen
 			} else {
 				System.out.println("Du har " + k + " gissningar kvar");
 				System.out.println();
@@ -157,7 +172,7 @@ public class talspel {
 											// vunnit
 						int L = k - 1; // För att visa hur många försök man hade kvar när man klara det
 						System.out.println("Du vann GRATTIS!!! du hade " + L + " försök kvar");
-						igen1(igen);
+						igen1();
 						i = antal; // För att stoppa loopen
 					} else { // Om man inte gissar rätt
 						if (talet > 0 && talet < (max + 1)) {// Om talet är inte mellan 1-max så körs inte denna loop
@@ -210,7 +225,7 @@ public class talspel {
 	 * @param igen
 	 * @return
 	 */
-	private static void igen1(boolean igen) {
+	private static void igen1() {
 		Scanner input = new Scanner(System.in);
 		boolean boll = true;
 		System.out.println("Vill du spela igen? Skriv 1 om du vill spela igen 0 om du inte");
