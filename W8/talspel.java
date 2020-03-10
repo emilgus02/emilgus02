@@ -105,10 +105,10 @@ public class talspel {
 			if (max > 0 && antal > 0) { // Kollar så talet inte är under 1
 				System.out.println();
 				guess(antal, max);
-			} else if (max == 0) {
+			} else if (max == 0) { // Kollar om max i intervallet är 0
 				System.out.println("Du kan inte ha 0 som max i intervallet");
 				diff0 = true;
-			} else {
+			} else { // kollar om gissningar är 0
 				System.out.println("Du kan inte ha 0 gissningar");
 				diff0 = true;
 			}
@@ -117,23 +117,23 @@ public class talspel {
 	}
 
 	/**
-	 * Kollar om talet är ett heltal om det är under 999999999
+	 * Kollar om talet är ett heltal och att det är under 999999999
 	 * 
 	 * @param max1
 	 * @return
 	 */
 	private static boolean nummer2(String max1) {
-		int length = max1.length(); // Skapar en inte som är längden på Stringen spel som sedan används i for loopen
+		int length = max1.length(); // Skapar en int som är längden på Stringen max1
 		if (length > 9) { // Kollar så talet är inte större än 999 999 999. Används mer för att det inte
 							// ska bli
 							// error när man går över intens storlek
 			return false;
 		}
-		if (max1.isEmpty()) { // Kollar om man ar skrivit något i max1
+		if (max1.isEmpty()) { // Kollar om man har skrivit något i max1
 			return false;
 		}
 		for (int i = 0; i < length; i++) {
-			if (Character.isDigit(max1.charAt(i)) == false) { // isDigit kollar om det bara i siffror i spel
+			if (Character.isDigit(max1.charAt(i)) == false) { // isDigit kollar om det bara i siffror i max1
 				return false;
 			}
 		}
@@ -184,11 +184,11 @@ public class talspel {
 						} else {
 							i--; // För att man ska få en till chans om man har gissat ett tal som inte är mellan
 									// 1-100
-							System.out.println("Välj ett tal mellan " + 1 + "-" + max);
+							System.out.println("Välj ett heltal mellan " + 1 + "-" + max);
 						}
 					}
 				} else {
-					System.out.println("Välj ett tal mellan " + 1 + "-" + max);
+					System.out.println("Välj ett heltal mellan " + 1 + "-" + max);
 					i--; // För att man ska få en till chans om man har gissat med en bokstav
 				}
 			}
