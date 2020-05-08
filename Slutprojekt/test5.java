@@ -1,25 +1,22 @@
-import java.io.FileInputStream;
-import java.
+import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class test5 {
 
-	public static void main(String[] args){
-		 FileInputStream in = null;
-	      try {
-			
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		boolean igen = true;
 		
-	         in = new FileInputStream("C:\\Users\\emil.gustafsson7\\Documents\\GitHub\\emilgus02\\Slutprojekt\\Easy.txt");
-	         read = read("Easy.txt");
-	         
-	         System.out.println(in);
-	      } catch (Exception e) {
-	    	  System.out.println(in);
-				System.out.println(e);
+		do {
+			String p = input.next();
+			if (p.contains("1")) {
+				
+			} else {
+				igen = false;
 			}
+			
+		} while (igen == true);
+		System.out.println("wow");
 	}
 
-	private static Object read(String string) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
