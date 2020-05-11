@@ -13,6 +13,7 @@ public class HangaGubbr {
 
 		do {
 			do {
+				valet = false;
 
 				String val = Meny(); // Skickar till menyn och i menyn så får man säga vilken svårighetsgrad
 
@@ -26,8 +27,8 @@ public class HangaGubbr {
 					ordet = Mulitplayer(); // Multiplayer om man den ena personen vill skriva ett ord och den andra ska
 											// gissa
 				} else if (val.equals("5")) {
-					regler();
-					valet = true;
+						regler();
+						valet = true;
 				} else if (val.equals("6")) {
 					System.exit(0); // Stänger av hela programmet
 				} else { // Om man inte uppfyller kraven för menyn så hamnar man här
@@ -42,6 +43,8 @@ public class HangaGubbr {
 			again();// I den här metoden så kollar man om man vill köra igen
 
 		} while (igen == true); // Om man vill köra igen används den här metoden till
+		
+		
 	}
 
 	/**
@@ -56,16 +59,20 @@ public class HangaGubbr {
 
 		do { // Om man skriver en siffra istället för bokstäver
 
+			if (igen == true) {
+				System.out.println("Skriv endast bokstäver");
+			}
+
 			Scanner input = new Scanner(System.in);
 			System.out.println("Skriv vad ditt ord ska vara");
 			ordet = new StringBuffer(input.nextLine().toUpperCase()); // Här skriver man vilket ord det ska vara
 
 			for (int j = 0; j < ordet.length(); j++) {
-				igen = false;
+				igen = true;
 				if (Character.isLetter(ordet.charAt(j))) { // Tittar att alla tecken i ordet är bokstäver
-				} else {
-					System.out.println("Skriv endast bokstäver");
-					igen = true;
+					if (String.valueOf(ordet).contains(" ") == false) {
+						igen = false;
+					}
 				}
 			}
 		} while (igen == true);
@@ -203,10 +210,42 @@ public class HangaGubbr {
 	}
 
 	/**
-	 * Berättar reglerna (inte klar med denna
+	 * Berättar reglerna till spelet
+	 * 
+	 * @param valet
 	 */
 	private static void regler() {
-		System.out.println("Regler");
+		System.out.println("Om du alrig har spelat hängagubbe innan så går det till så här");
+		System.out.println();
+		System.out.println(
+				"Ett ord kommer att slumpmässigt väljas ut till dig (beroende på svprighetsgrad) som du kommer få gissa vilka bokstäver som är med i ordet");
+		System.out.println(
+				"Om bokstaven är inte med så kommer en gubbe som hängs börjat ritas fram och du kommer att få 7 chanser att gissa fel");
+		System.out.println(
+				"Om bokstaven är med så kommer bokstaven visas vart det är i ordet och du kommer att få gissa igen");
+		System.out.println(
+				"Du vinner när du har skrivit hela ordet eller du har skrivit alla bokstäver som är med i ordet");
+		System.out.println(
+				"Du förlorar när hela gubben har blivit ritad alltså när du inte har några fler gissningar kvar");
+		System.out.println();
+		System.out.println("Multiplayer");
+		System.out.println(
+				"Multiplayer då får en person skriva ett ord sedan så kommer den andra personen få en chans att gissa på vilket ord du har skrivit");
+		System.out.println(
+				"När man skriver ordet så kan man inte använda mellanslag eller använda några siffror eller andra symboler föra att skriva ordet");
+		System.out.println();
+		System.out.println("När du har läst klart och vill spela så kan du skriva 1 för att komma tillbaks till menyn");
+
+		Scanner input = new Scanner(System.in);
+		boolean igen = true;
+		do {
+			String again = input.nextLine();
+			if (again.equals("1")) { // Kollar om man har skrivit 1
+				igen = false; // stänger av den här loopen
+			} else { // Om man har varken skrivit 1 eller 0
+				System.out.println("Vänligen skriv 1 om du vill gå tillbaks till menyn");
+			}
+		} while (igen == true);
 
 	}
 
