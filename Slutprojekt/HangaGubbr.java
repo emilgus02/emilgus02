@@ -27,8 +27,8 @@ public class HangaGubbr {
 					ordet = Mulitplayer(); // Multiplayer om man den ena personen vill skriva ett ord och den andra ska
 											// gissa
 				} else if (val.equals("5")) {
-						regler();
-						valet = true;
+					regler();
+					valet = true;
 				} else if (val.equals("6")) {
 					System.exit(0); // Stänger av hela programmet
 				} else { // Om man inte uppfyller kraven för menyn så hamnar man här
@@ -43,8 +43,7 @@ public class HangaGubbr {
 			again();// I den här metoden så kollar man om man vill köra igen
 
 		} while (igen == true); // Om man vill köra igen används den här metoden till
-		
-		
+
 	}
 
 	/**
@@ -259,31 +258,10 @@ public class HangaGubbr {
 		ArrayList<String> använda = new ArrayList<String>();
 		Scanner input = new Scanner(System.in);
 		String repeated = null;
-		StringBuffer Hemligt = new StringBuffer(repeated = new String(new char[(ordet.length())]).replace("\0", "_")); // Här
-																														// loopar
-																														// man
-																														// "_"
-																														// så
-																														// det
-																														// blir
-																														// lika
-																														// många
-																														// "_"
-																														// som
-																														// det
-																														// var
-																														// bokstäver
-																														// i
-																														// ordet
-																														// och
-																														// sedan
-																														// lägger
-																														// man
-																														// in
-																														// dem
-																														// i
-																														// en
-																														// StringBuffer
+		StringBuffer Hemligt = new StringBuffer(repeated = new String(new char[(ordet.length())]).replace("\0", "_"));
+		// Här loopar man "_" så det blir lika många "_" som det var bokstäver i ordet
+		// och sedan lägger man in dem i en StringBuffer
+
 		for (int k = 1; k < (ordet.length() + ordet.length()); k++) {
 			Hemligt.insert(k, " ");// Här lägger man till mellanslag mellan varje "_" för att det ska bli lättare
 									// att se hur många bokstäver det är
